@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
+from django.conf.global_settings import DATETIME_INPUT_FORMATS
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -27,7 +28,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
+AUTHENTICATION_BACKENDS = ['app.backends.EmailBackend']
 # Application definition
 
 INSTALLED_APPS = [
@@ -43,6 +44,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'djoser',
     'rest_auth',
+    'paystackapi',
 ]
 
 MIDDLEWARE = [
@@ -57,10 +59,12 @@ MIDDLEWARE = [
 ]
 
 CORS_ORIGIN_ALLOW_ALL=True
-    
+
+ 
    
 ROOT_URLCONF = 'taas.urls'
 
+PAYSTACK_SECRET_KEY = 'sk_test_f399a86a960fbee24e673890d84237f00f2d9b8a'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -115,7 +119,9 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Africa/Lagos'
+
+DATETIME_INPUT_FORMATS += ('%m/%d/%Y %H:%M',)
 
 USE_I18N = True
 
