@@ -315,7 +315,7 @@ def get_designer_fabricCollection(request):
 @api_view(['POST'])
 @parser_classes((JSONParser,))
 def new_access_code(request):
-    paystack_secret_key = "sk_test_f399a86a960fbee24e673890d84237f00f2d9b8a"
+    paystack_secret_key = "##########"
     paystack = Paystack(secret_key=paystack_secret_key)
     response=Transaction.initialize(reference=request.data['reference'],amount=request.data['amount'],email=request.data['email'])
     Transactions.objects.create(user=User.objects.get(email=request.data['email']),reference=request.data['reference'],amount=request.data['amount'])
